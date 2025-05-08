@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        html{
+           margin: 0px; 
+        }
+        h1{
+            font-size: 3rem;
+            text-align: center;
+        }
+        #calbody{
+            background-color: azure;
+           height: 550px;
+            width: 330px;
+            border: 5px solid black;
+            margin: auto;
+            padding: 10px;
+            border-radius: 10px;
+            overflow:auto;
+        }
+        #display{
+            overflow: auto;
+            height:17%;
+            font-size:2.1rem ;
+            border: 4px solid lightblue;
+            margin-bottom:15px;
+        }
+        #bt{
+            border: 3px solid lightblue;
+            padding: 5px;
+            display: grid;
+            height: 75%;
+            grid-template-columns: auto auto auto auto;
+            grid-gap:8px;
+        }
+        button{
+            font-size: 2rem;
+        }
+        p{
+        margin:0px;
+        }
+       input{
+        margin:0px;
+        width:97.5%;
+        font-size:1.8rem;
+        background-color:azure; 
+       }
+       
+    </style>
+</head>
+<body>
+    <h1>Basic calculator</h1>
+    <div id="calbody">
+       <div id = "display">
+        <input type="Text" id ="input"name="input"></input>
+        <p id="output" style="text-align:right"></p>
+       </div>
+        <div id="bt">
+            <button>C</button>
+            <button>%</button>
+            <button>dl</button>
+            <button>/</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>*</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+            <button>0</button>
+            <button>00</button>
+            <button>.</button>
+            <button>=</button>
+        </div>
+
+    </div>
+    
+</body>
+    <script>
+    
+    
+    let ip = document.querySelector("#input")
+    let bt= document.querySelector("#bt")
+     let op = document.querySelector("#output");
+    
+    window.onload =function(){
+      ip.value=""
+    }
+    
+   
+     bt.addEventListener('click',function(e){
+      
+     if( e.target.innerHTML =="="){
+          op.innerHTML= `${eval(ip.value)}`
+          
+        } else if(e.target.innerHTML =="C" ){
+          ip.value="";
+          op.innerHTML="";
+        } else if(e.target.innerHTML == "dl"){
+          ip.value= `${ip.value.slice(0,-1)}`
+        }
+      else{
+      ip.value+=`${ e.target.innerHTML.length >= 2 ? "":e.target.innerHTML }`
+      } 
+     })
+      
+      addEventListener('keypress',function(e){
+      
+      e.preventDefault();
+      
+      if( (Number(e.key) >= 0 && Number(e.key) <= 9 ) || e.key == "/" || e.key == "*" ||
+        e.key == "+"|| e.key == "-" || e.key == ")"|| e.key == "("|| e.key == "%" ||
+        e.key == "." ){
+        ip.value +=e.key 
+      }
+        else if( e.key =="Enter"){
+          op.innerHTML= `${eval(ip.value)}`  
+        } else if(e.key =="c"|| e.key =="C" ){
+          ip.value="";
+          op.innerHTML="";
+        }
+      })
+    
+    
+       
+    </script>
+</html>
